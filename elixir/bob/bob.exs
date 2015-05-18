@@ -17,7 +17,7 @@ defmodule Teenager do
   end
 
   defp yelling?(input) do
-    String.upcase(String.replace(input, ~r/\P{L}/, "")) == String.replace(input, ~r/\P{L}/, "") && String.length(String.replace(input, ~r/\P{L}/, "")) > 0
+    normalized = String.replace(input, ~r/\P{L}/, "")
+    String.upcase(normalized) == normalized && String.length(normalized) > 0
   end
-
 end
