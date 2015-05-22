@@ -1,25 +1,29 @@
-var Hamming = {};
+var Hamming = function () {};
 
-Hamming.same = function (a, b, index) {
+Hamming.prototype.same = function (a, b, index) {
   return a.split('')[index] === b.split('')[index];
 };
 
-Hamming.guard = function (a, b) {
+Hamming.prototype.guard = function (a, b) {
   if (a.length  != b.length) {
     throw 'DNA strands must be of equal length.';
   }
 };
 
-Hamming.compute = function (a, b) {
-  Hamming.guard(a, b);
+Hamming.prototype.compute = function (a, b) {
+  this.guard(a, b);
 
   var different = 0;
   for(var i = 0; i < a.length; i++) {
-    if (!Hamming.same(a, b, i)) {
+    if (!this.same(a, b, i)) {
       different += 1;
     }
   }
   return different;
 };
 
-module.exports = Hamming;
+module.exports = {
+  compute: function (a, b) {
+    return new Hamming().compute(a, b);
+  }
+}
