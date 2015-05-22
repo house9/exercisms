@@ -1,21 +1,19 @@
 var Hamming = function () {};
 
-Hamming.prototype.same = function (a, b, index) {
-  return a.split('')[index] === b.split('')[index];
-};
-
 Hamming.prototype.guard = function (a, b) {
-  if (a.length  != b.length) {
+  if (a.length != b.length) {
     throw 'DNA strands must be of equal length.';
   }
 };
 
-Hamming.prototype.compute = function (a, b) {
-  this.guard(a, b);
+Hamming.prototype.compute = function (strand_1, strand_2) {
+  this.guard(strand_1, strand_2);
+  var a = strand_1.split('');
+  var b = strand_2.split('');
 
   var different = 0;
   for(var i = 0; i < a.length; i++) {
-    if (!this.same(a, b, i)) {
+    if (a[i] !== b[i]) {
       different += 1;
     }
   }
